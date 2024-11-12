@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern PDF Visiting Card</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+      background-color: #eef2f3;
+    }
+    .card-container {
+      width: 350px;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 20px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      transition: transform 0.2s;
+    }
+    .card-container:hover {
+      transform: scale(1.02);
+    }
+    .header {
+      text-align: center;
+      font-size: 24px;
+      color: #2C3E50; /* Dark grey */
+      margin-bottom: 10px;
+      font-weight: bold;
+      border-bottom: 2px solid #2980B9; /* Blue */
+      padding-bottom: 8px;
+    }
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .info-section .label {
+      font-weight: bold;
+      color: #2980B9; /* Blue */
+    }
+    .info-section .info {
+      color: #34495E; /* Darker grey */
+    }
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #7F8C8D; /* Light grey */
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .social-icons img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="header">
+      <%= companyName %>
+    </div>
+
+    <div class="info-section">
+      <div><span class="label">Name:</span> <span class="info"><%= userName %></span></div>
+      <div><span class="label">Location:</span> <span class="info"><%= location %></span></div>
+      <div><span class="label">Email:</span> <span class="info"><%= email %></span></div>
+      <div><span class="label">Website:</span> <span class="info"><%= website %></span></div>
+      <div><span class="label">Phone:</span> <span class="info"><%= contacts %></span></div>
+      <div><span class="label">WhatsApp:</span> <span class="info"><%= Watsapps %></span></div>
+      <div><span class="label">Google Maps:</span> <span class="info"><%= googleMap %></span></div>
+      <div><span class="label">Address:</span> <span class="info"><%= location %></span></div>
+    </div>
+
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> <%= companyName %>. All rights reserved.
+    </div>
+
+    <div class="social-icons">
+      <% if (socialMediaLinks.facebook) { %>
+        <a href="<%= socialMediaLinks.facebook %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/2980B9/facebook-new.png" alt="Facebook">
+        </a>
+      <% } %>
+      <% if (socialMediaLinks.instagram) { %>
+        <a href="<%= socialMediaLinks.instagram %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/2980B9/instagram-new.png" alt="Instagram">
+        </a>
+      <% } %>
+      <% if (socialMediaLinks.youtubeChannel) { %>
+        <a href="<%= socialMediaLinks.youtubeChannel %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/2980B9/youtube-play.png" alt="YouTube">
+        </a>
+      <% } %>
+      <% if (socialMediaLinks.googleBusiness) { %>
+        <a href="<%= socialMediaLinks.googleBusiness %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/2980B9/google-my-business.png" alt="Google Business">
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

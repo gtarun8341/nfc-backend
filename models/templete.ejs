@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Company Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1, h2 {
+            color: #1e3a8a;
+        }
+        .container {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .logo img {
+            width: 120px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .field {
+            margin: 15px 0;
+        }
+
+        .field label {
+            font-weight: bold;
+            color: #374151;
+            margin-right: 10px;
+        }
+
+        .field span {
+            color: #6b7280;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            margin: 0 10px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #4f46e5;
+        }
+
+        .social-links img {
+            width: 25px;
+            height: 25px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 20px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; 
+}
+
+        button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+    background-color: #45a049;
+}
+
+.review-button {
+    margin-right: 10px;
+}
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px; 
+}
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .image-row .field {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .image-row .field:last-child {
+            margin-right: 0;
+        }
+        .product-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 20px;
+        flex: 1 1 calc(33.333% - 20px);
+        box-sizing: border-box;
+        min-width: 280px;
+        max-width: 100%;
+    }
+
+    .product-images img {
+        width: 30%; 
+        height: auto; 
+        margin-top: 10px;
+        display: block;
+        margin-left: auto; 
+        margin-right: auto;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    @media (max-width: 768px) {
+        .product {
+            flex: 1 1 calc(50% - 20px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .product {
+            flex: 1 1 100%;
+        }
+    }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .logo img {
+                width: 100px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .section-title {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .video-container {
+            margin-top: 10px;
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 5px;
+        }
+        .map-container {
+            margin-top: 20px;
+            height: 400px; 
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align:center;">Company Details</h1>
+
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="logo">
+            <img src="<%= logoUrl %>" alt="Company Logo">
+        </div>
+    
+        <!-- User Details Section -->
+        <h2 class="section-title">Basic Information</h2>
+        <div class="field">
+            <label>Company Name:</label>
+            <span><%= companyName %></span>
+        </div>
+        <div class="field">
+            <label>Designation:</label>
+            <span><%= designation %></span>
+        </div>
+        <div class="field">
+            <label>Name:</label>
+            <span><%= userName %></span>
+        </div>
+        <div class="field">
+            <label>Location:</label>
+            <span><%= location %></span>
+        </div>
+        <div class="field">
+            <label>Email:</label>
+            <span><%= email %></span>
+        </div>
+        <div class="field">
+            <label>Phone No:</label>
+            <span>
+                <% if (contacts.length > 0) { %>
+                    <% contacts.forEach(function(contact) { %>
+                        <%= contact %><%= contact !== contacts[contacts.length - 1] ? ', ' : '' %>
+                    <% }); %>
+                <% } else { %>
+                    No contact numbers available.
+                <% } %>
+            </span>
+        </div>
+        <div class="field">
+            <label>Watsapp No:</label>
+            <span>
+                <% if (Watsapps.length > 0) { %>
+                    <% Watsapps.forEach(function(Watsapp) { %>
+                        <%= Watsapps %><%= Watsapp !== Watsapps[Watsapps.length - 1] ? ', ' : '' %>
+                    <% }); %>
+                <% } else { %>
+                    No Watsapp numbers available.
+                <% } %>
+            </span>
+        </div>
+        
+        <!-- Social Media Links Section -->
+        <div class="social-links">
+            <% if (socialMediaLinks) { %>
+                <% if (socialMediaLinks.facebook) { %>
+                    <a href="<%= socialMediaLinks.facebook %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=F" alt="Facebook">
+                    </a>
+                <% } %>
+                <% if (socialMediaLinks.instagram) { %>
+                    <a href="<%= socialMediaLinks.instagram %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=I" alt="Instagram">
+                    </a>
+                <% } %>
+                <% if (socialMediaLinks.linkedin) { %>
+                    <a href="<%= socialMediaLinks.linkedin %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=L" alt="LinkedIn">
+                    </a>
+                <% } %>
+                <% if (socialMediaLinks.twitter) { %>
+                    <a href="<%= socialMediaLinks.twitter %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=T" alt="Twitter">
+                    </a>
+                <% } %>
+                <% if (socialMediaLinks.youtubeChannel) { %>
+                    <a href="<%= socialMediaLinks.youtubeChannel %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=Y" alt="YouTube">
+                    </a>
+                <% } %>
+                <% if (socialMediaLinks.googleBusiness) { %>
+                    <a href="<%= socialMediaLinks.googleBusiness %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=G" alt="Google Business">
+                    </a>
+                <% } %>
+                <% if (socialMediaLinks.otherProfile) { %>
+                    <a href="<%= socialMediaLinks.otherProfile %>" target="_blank">
+                        <img src="https://via.placeholder.com/25/ffffff/000000?text=O" alt="Other Profile">
+                    </a>
+                <% } %>
+            <% } else { %>
+                <span>No social media links available.</span>
+            <% } %>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="button" onclick="saveInformation()">Click to Save</button>
+            <button class="button" onclick="shareViaSMS()">SMS Sharing</button>
+            <button class="button" onclick="shareViaOtherMediums()">Click to Share</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Business Details</h2>
+        <div class="field">
+            <label>Company Name:</label>
+            <span><%= companyName %></span>
+        </div>
+        <div class="field">
+            <label>Nature of Business:</label>
+            <span><%= businessNature %></span>
+        </div>
+        <div class="field">
+            <label>Establishment Year:</label>
+            <span><%= establishmentYear %></span>
+        </div>
+        <div class="field">
+            <label>GST No:</label>
+            <span><%= gstNo %></span>
+        </div>
+        <div class="field">
+            <label>Documents:</label>
+            <div>
+                <% if (documents && documents.length > 0) { %>
+                    <% documents.forEach(function(documentUrl) { %>
+                        <button style="margin: 5px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">
+                            <a href="<%= documentUrl %>" target="_blank" style="color: white; text-decoration: none;"><%= documentUrl.split('/').pop() %></a>
+                        </button>
+                    <% }); %>
+                <% } else { %>
+                    <p>No documents available.</p>
+                <% } %>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Payment and Bank Information</h2>
+        <div class="field">
+            <label>Paytm No:</label>
+            <span><%= paytmNo %></span>
+        </div>
+        <div class="field">
+            <label>Phone Pay No:</label>
+            <span><%= phonePayNo %></span>
+        </div>
+        <div class="field">
+            <label>GPay No:</label>
+            <span><%= gpayNo %></span>
+        </div>
+        <div class="field">
+            <label>UPI ID:</label>
+            <span><%= upiId %></span>
+        </div>
+        <div class="field">
+            <label>Bank Name:</label>
+            <span><%= bankName %></span>
+        </div>
+        <div class="field">
+            <label>Account Type:</label>
+            <span><%= accountType %></span>
+        </div>
+        <div class="field">
+            <label>Branch Name:</label>
+            <span><%= branchName %></span>
+        </div>
+        <div class="field">
+            <label>Account No:</label>
+            <span><%= accountNo %></span>
+        </div>
+        <div class="field">
+            <label>Account Holder Name:</label>
+            <span><%= accountHolderName %></span>
+        </div>
+        <div class="field">
+            <label>IFSC Code:</label>
+            <span><%= ifscCode %></span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 class="section-title">Images</h2>
+        <div class="image-row">
+            <% if (galleryImages && galleryImages.length > 0) { %>
+                <% galleryImages.forEach(function(imageUrl, index) { %>
+                    <div class="field">
+                        <label>Image <%= index + 1 %>:</label>
+                        <span>
+                            <img src="<%= imageUrl %>" alt="Image <%= index + 1 %>" style="max-width: 100%; height: auto;">
+                        </span>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No images available.</p>
+            <% } %>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 class="section-title">YouTube Videos</h2>
+        <div class="video-container">
+            <% if (videoUrl && videoUrl.length > 0) { %>
+                <% videoUrl.forEach(function(videoUrl) { 
+                    // Convert YouTube URL to embed format
+                    let embedUrl = videoUrl.replace("watch?v=", "embed/").replace("youtu.be/", "www.youtube.com/embed/");
+                %>
+                    <div class="field">
+                        <label>Video:</label>
+                        <iframe 
+                            src="<%= embedUrl %>" 
+                            allowfullscreen 
+                            style="width: 100%; height: 315px;" 
+                            frameborder="0">
+                        </iframe>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No videos available.</p>
+            <% } %>
+        </div>
+    </div>
+    
+
+
+    <div class="container">
+        <h2 class="section-title">Products</h2>
+        <div class="product-row">
+            <% products.forEach(function(product) { %>
+                <div class="field product">
+                    <label>Product Name:</label>
+                    <h2 id="product-name-<%= product._id %>"><%= product.productName %></h2>
+                    
+    
+                    <label>Price:</label>
+                    <span>$<%= product.productPrice %></span>
+    
+                    <label>Type:</label>
+                    <span><%= product.productType %></span>
+    
+                    <% if (product.productImages && product.productImages.length > 0) { %>
+                        <label>Product Images:</label>
+                        <div class="product-images">
+                            <% product.productImages.forEach(function(imageUrl, index) { %>
+                                <img src="<%= imageUrl %>" alt="<%= product.productName %> Image <%= index + 1 %>" style="max-width: 100%; height: auto;">
+                            <% }); %>
+                        </div>
+                    <% } else { %>
+                        <p>No images available.</p>
+                    <% } %>
+    
+                    <!-- Initial Add Button -->
+                    <button id="add-button-<%= product._id %>" onclick="showQuantityControls('<%= product._id %>')">Add</button>
+    
+                    <!-- Quantity Controls (Initially hidden) -->
+                    <div id="quantity-controls-<%= product._id %>" class="quantity-controls" style="display: none;">
+                        <button onclick="changeQuantity('<%= product._id %>', -1)">-</button>
+                        <span id="quantity-display-<%= product._id %>">1</span>
+                        <button onclick="changeQuantity('<%= product._id %>', 1)">+</button>
+                    </div>
+    
+                    <!-- Display current product in cart -->
+                    <div id="cart-item-<%= product._id %>" class="cart-item" style="display: none;">
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    
+        <h2>Your Cart</h2>
+        <div id="cart">
+            <ul id="cart-items"></ul>
+            <button id="checkout-button" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Section 7: Enquiry Form</h2>
+        <form id="enquiryForm" onsubmit="submitEnquiry(event)">
+            <input type="hidden" id="userId" name="userId" value="<%= userid %>">
+    
+            <div class="field">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="field">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="field">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="field">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+            </div>
+            <button type="submit">Submit Enquiry</button>
+        </form>
+        <div id="responseMessage"></div> <!-- To display response messages -->
+    </div>
+
+    <div class="container">
+        <h2>Section 8: Review Form</h2>
+        <form id="reviewForm" onsubmit="submitReview(event)">
+            <input type="hidden" id="userId" name="userId" value="<%= userid %>">
+
+            <div class="field">
+                <label for="review-name">Name:</label>
+                <input type="text" id="review-name" name="review-name" placeholder="Enter your name" required>
+            </div>
+            <div class="field">
+                <label for="review-email">Email:</label>
+                <input type="email" id="review-email" name="review-email" placeholder="Enter your email" required>
+            </div>
+            <div class="field">
+                <label for="review-title">Title of Review:</label>
+                <input type="text" id="review-title" name="review-title" placeholder="Enter the title of your review" required>
+            </div>
+            <div class="field">
+                <label for="rating">Overall Rating:</label>
+                <select id="rating" name="rating" required>
+                    <option value="" disabled selected>Select your rating</option>
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="3">3 - Good</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="1">1 - Poor</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="review-message">Review:</label>
+                <textarea id="review-message" name="review-message" placeholder="Write your review here" required></textarea>
+            </div>
+            <button type="submit">Submit Review</button>
+        </form>
+        <div id="reviewResponseMessage"></div> <!-- To display response messages -->
+    </div>
+    <div class="container">
+        <h2>Section 9: Location Map</h2>
+        <div class="map-container">
+            <iframe 
+                src="<%= googleMap %>" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+        <div class="button-container">
+            <a href="<%= googleBusiness %>" target="_blank" class="button review-button">Leave a Review</a>
+            <a href="https://your-profile-share-link.com" target="_blank" class="button share-button">Share Profile</a>
+        </div>
+    </div>
+
+</body>
+<script>
+    let cart = []; 
+
+// Function to show quantity controls when "Add" is clicked
+function showQuantityControls(productId) {
+    const addButton = document.getElementById(`add-button-${productId}`);
+    const controls = document.getElementById(`quantity-controls-${productId}`);
+    const cartItem = document.getElementById(`cart-item-${productId}`);
+
+    addButton.style.display = 'none'; // Hide the "Add" button
+    controls.style.display = 'flex'; // Show the quantity controls
+    cartItem.style.display = 'block'; // Show cart item display
+
+    // Initialize cart item display with product name
+    const productName = document.getElementById(`product-name-${productId}`).textContent;
+    updateCartDisplay(productId, productName, 1);
+}
+
+// Function to change quantity
+function changeQuantity(productId, change) {
+    const quantityDisplay = document.getElementById(`quantity-display-${productId}`);
+    let currentQuantity = parseInt(quantityDisplay.textContent);
+
+    // Update quantity, ensuring it doesn't go below 1
+    currentQuantity += change;
+
+    if (currentQuantity < 1) {
+        // If quantity is less than 1, remove from cart and show "Add" button
+        removeFromCart(productId);
+        const addButton = document.getElementById(`add-button-${productId}`);
+        addButton.style.display = 'block'; // Show the "Add" button
+        const controls = document.getElementById(`quantity-controls-${productId}`);
+        controls.style.display = 'none'; // Hide quantity controls
+    } else {
+        quantityDisplay.textContent = currentQuantity;
+
+        // Update cart display
+        const productName = document.getElementById(`product-name-${productId}`).textContent;
+        updateCartDisplay(productId, productName, currentQuantity);
+    }
+}
+
+// Function to update the cart display
+function updateCartDisplay(productId, productName, quantity) {
+    const existingProductIndex = cart.findIndex(item => item.productId === productId);
+
+    // Update or add to the cart
+    if (existingProductIndex !== -1) {
+        cart[existingProductIndex].quantity = quantity;
+    } else {
+        cart.push({ productId: productId, productName: productName, quantity: quantity });
+    }
+
+    // Update the cart UI
+    displayCart();
+}
+
+// Function to remove a product from the cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.productId !== productId); // Remove from the cart
+
+    // Hide the cart item display
+    const cartItem = document.getElementById(`cart-item-${productId}`);
+    cartItem.style.display = 'none'; // Hide the cart item display
+    displayCart();
+}
+
+// Function to display cart items
+function displayCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Clear previous items
+
+    cart.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.productName} (Quantity: ${item.quantity})`;
+        cartItemsContainer.appendChild(listItem);
+    });
+}
+
+// Function to handle checkout
+function checkout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+
+    // Redirect to the purchase page with cart data
+    const cartData = JSON.stringify(cart);
+    window.location.href = `/purchase-page?cart=${encodeURIComponent(cartData)}`;
+}
+
+    async function submitEnquiry(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = {
+            userId: document.getElementById('userId').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const response = await fetch('<%= baseUrl %>api/enquiry/submit-enquiry', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Specify content type
+                },
+                body: JSON.stringify(formData) // Send form data as JSON
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('responseMessage').innerText = data.message; // Display success message
+                document.getElementById('enquiryForm').reset(); // Reset form fields
+            } else {
+                const errorData = await response.json();
+                document.getElementById('responseMessage').innerText = 'Error: ' + errorData.message; // Display error message
+            }
+        } catch (error) {
+            console.error('Error submitting enquiry:', error);
+            document.getElementById('responseMessage').innerText = 'An error occurred. Please try again.'; // Display general error
+        }
+    }
+
+    async function submitReview(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = {
+            userId: document.getElementById('userId').value,
+            name: document.getElementById('review-name').value,
+            email: document.getElementById('review-email').value,
+            title: document.getElementById('review-title').value,
+            rating: document.getElementById('rating').value,
+            message: document.getElementById('review-message').value
+        };
+
+        try {
+            const response = await fetch('<%= baseUrl %>api/review/submit-review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Specify content type
+                },
+                body: JSON.stringify(formData) // Send form data as JSON
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('reviewResponseMessage').innerText = data.message; // Display success message
+                document.getElementById('reviewForm').reset(); // Reset form fields
+            } else {
+                const errorData = await response.json();
+                document.getElementById('reviewResponseMessage').innerText = 'Error: ' + errorData.message; // Display error message
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error);
+            document.getElementById('reviewResponseMessage').innerText = 'An error occurred. Please try again.'; // Display general error
+        }
+    }
+</script>
+</html>

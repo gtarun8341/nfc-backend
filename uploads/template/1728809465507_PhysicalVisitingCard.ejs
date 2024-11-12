@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional PDF Visiting Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .card-container {
+      width: 400px;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+    }
+    .header {
+      text-align: center;
+      font-size: 22px;
+      color: #2658A6; /* Dark blue */
+      margin-bottom: 15px;
+      font-weight: bold;
+      border-bottom: 2px solid #4A90E2; /* Light blue */
+      padding-bottom: 10px;
+    }
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .info-section .label {
+      font-weight: bold;
+      color: #4A90E2; /* Light blue */
+    }
+    .info-section .info {
+      color: #333;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #888;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .social-icons img {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+    /* New styles for product images */
+    .product-image {
+      max-width: 50px; /* Adjust the size as needed */
+      max-height: 50px; /* Adjust the size as needed */
+      margin: 5px; /* Optional: adds some spacing around the images */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="header">
+      <%= companyName %>
+    </div>
+
+    <div class="info-section">
+      <div><span class="label">Name:</span> <span class="info"><%= userName %></span></div>
+      <div><span class="label">Location:</span> <span class="info"><%= location %></span></div>
+      <div><span class="label">Email:</span> <span class="info"><%= email %></span></div>
+      <div><span class="label">Website:</span> <span class="info"><%= website %></span></div>
+      <div><span class="label">Phone:</span> <span class="info"><%= contacts %></span></div>
+      <div><span class="label">WhatsApp:</span> <span class="info"><%= Watsapps %></span></div>
+      <div><span class="label">Google Maps:</span> <span class="info"><%= googleMap %></span></div>
+      <div><span class="label">Address:</span> <span class="info"><%= location %></span></div>
+    </div>
+    <h2>Our Products</h2>
+    <ul>
+        <% products.forEach(product => { %>
+            <li>
+                <h3><%= product.productName %></h3>
+                <p>Price: <%= product.productPrice %></p>
+                <p>Type: <%= product.productType %></p>
+                <% if (product.productImages.length > 0) { %>
+                    <div>
+                        <% product.productImages.forEach(image => { %>
+                            <img class="product-image" src="<%= image %>" alt="<%= product.productName %>" />
+                        <% }) %>
+                    </div>
+                <% } %>
+            </li>
+        <% }) %>
+    </ul>
+    
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> <%= companyName %>. All rights reserved.
+    </div>
+
+    <div class="social-icons">
+      <% if (socialMediaLinks.facebook) { %>
+        <a href="<%= socialMediaLinks.facebook %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/4A90E2/facebook-new.png" alt="Facebook">
+        </a>
+      <% } %>
+      <% if (socialMediaLinks.instagram) { %>
+        <a href="<%= socialMediaLinks.instagram %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/4A90E2/instagram-new.png" alt="Instagram">
+        </a>
+      <% } %>
+      <% if (socialMediaLinks.youtubeChannel) { %>
+        <a href="<%= socialMediaLinks.youtubeChannel %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/4A90E2/youtube-play.png" alt="YouTube">
+        </a>
+      <% } %>
+      <% if (socialMediaLinks.googleBusiness) { %>
+        <a href="<%= socialMediaLinks.googleBusiness %>" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/4A90E2/google-my-business.png" alt="Google Business">
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>
