@@ -33,6 +33,8 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
+app.use(cors(corsOptions));  // Apply the CORS options
+
 // Middleware
 app.set('view engine', 'ejs');
 app.set('uploads', path.join(__dirname, 'uploads'));  // Define where your EJS templates are located
