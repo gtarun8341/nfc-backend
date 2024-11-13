@@ -28,16 +28,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// const corsOptions = {
-//     origin: 'http://148.135.136.17:3000', // Replace with your frontend URL
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-// app.use(cors(corsOptions));  // Apply the CORS options
-app.use(cors({
+const corsOptions = {
     origin: 'http://148.135.136.17:3000', // Replace with your frontend URL
-    credentials: true // Allow cookies and sessions to be sent across origins
-  }));
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));  // Apply the CORS options
+app.options('*', cors());  // Handle preflight requests for all routes
+
 // Middleware
 app.set('view engine', 'ejs');
 app.set('uploads', path.join(__dirname, 'uploads'));  // Define where your EJS templates are located
