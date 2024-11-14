@@ -39,7 +39,7 @@ app.options('*', cors(corsOptions));  // Handle preflight requests for all route
 // Middleware
 app.set('view engine', 'ejs');
 app.set('uploads', path.join(__dirname, 'uploads'));  // Define where your EJS templates are located
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
