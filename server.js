@@ -28,13 +28,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const corsOptions = {
-    origin: 'http://148.135.136.17:3000', // Replace with your frontend URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));  // Only apply CORS with options here
-app.options('*', cors(corsOptions));  // Handle preflight requests for all routes
+// const corsOptions = {
+//     origin: 'http://148.135.136.17:3000', // Replace with your frontend URL
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// };
+// app.use(cors(corsOptions));  // Only apply CORS with options here
+// app.options('*', cors(corsOptions));  // Handle preflight requests for all routes
+app.use(cors({
+    origin: 'http://148.135.136.17:3000',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
+    
 
 // Middleware
 app.set('view engine', 'ejs');
