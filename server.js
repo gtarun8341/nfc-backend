@@ -33,8 +33,8 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
-app.use(cors(corsOptions));  // Apply the CORS options
-app.options('*', cors());  // Handle preflight requests for all routes
+app.use(cors(corsOptions));  // Only apply CORS with options here
+app.options('*', cors(corsOptions));  // Handle preflight requests for all routes
 
 // Middleware
 app.set('view engine', 'ejs');
