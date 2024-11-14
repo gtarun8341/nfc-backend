@@ -1,10 +1,13 @@
+// Import required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
+
+// Import route files
 const userRoutes = require('./routes/userRoutes');
 const templateRoutes = require('./routes/templateRoutes'); // Template routes
-const path = require('path');
 const userDetailsRoutes = require('./routes/userDetailsRoutes');
 const productRoutes = require('./routes/productRoutes');
 const enquiryRoutes = require('./routes/enquiryRoutes');
@@ -19,7 +22,6 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const userPlanRoutes = require('./routes/userPlanRoutes');
 const orderPaymentRoutes = require('./routes/orderPaymentRoutes');
 const orderRoutes = require('./routes/orderRoutes');
-const { addAdminProduct } = require('./controllers/adminProductController');
 const adminProductRoutes = require('./routes/adminProductRoutes');
 const subscription = require('./routes/subscription');
 
@@ -28,24 +30,21 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// const corsOptions = {
-//     origin: 'http://148.135.136.17:3000', // Replace with your frontend URL
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-// app.use(cors(corsOptions));  // Only apply CORS with options here
-// app.options('*', cors(corsOptions));  // Handle preflight requests for all routes
-app.use(cors({
-    origin: 'http://148.135.136.17:3000',
-    methods: 'GET,POST,PUT,DELETE,OPTIONS',
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
-    
+// Set CORS options
+const corsOptions = {
+  origin: 'http://148.135.136.17:3000', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+// Enable CORS middleware
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Middleware
 app.set('view engine', 'ejs');
 app.set('uploads', path.join(__dirname, 'uploads'));  // Define where your EJS templates are located
-// app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -82,6 +81,7 @@ app.get('/', (req, res) => {
 // Static files for uploaded templates
 app.use('/uploads', express.static('uploads'));
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
